@@ -4,11 +4,17 @@ This provides very basic functionality to browse newspaper title locations on a 
 
 ## Setup
 
+Download the repository into the Open ONI's `onisite/plugins` directory as `map`:
+
+```
+git clone git@github.com:open-oni/plugin_map.git map
+```
+
 You will need a list of latitude and longitudes for all of the cities you would like to display on the map.
 
 Add them to `static/js/cities_list.js` in the following format:
 
-```
+```javascript
 var cities = [
   {
     "name": "Example City",
@@ -32,7 +38,7 @@ To hitch this plugin to your project wagon, you will need to add a few lines in 
 
 `onisite.plugins.map` needs to go in your `INSTALLED_APPS` list:
 
-```
+```python
 # onisite/settings_local.py
 
 INSTALLED_APPS = (
@@ -48,7 +54,7 @@ INSTALLED_APPS = (
 
 And add the plugin's URLs with `url(r'^map/', include("onisite.plugins.map.urls"))` to `onisite/urls.py`:
 
-```
+```python
 # onisite/urls.py
 
 from django.conf.urls import url, include
@@ -61,12 +67,17 @@ urlpatterns = [
 ]
 ```
 
+You can add links to the map in your templates with this named path:
+
+```python
+<a href="{% url 'map_home' %}">Browse by Location</a>
+```
 
 ## Customization
 
 You can create your own settings by overriding a block in `map.html`.
 
-```
+```javascript
   {% block javascript_map_settings %}
     <script>
       // map settings
