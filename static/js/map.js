@@ -1,14 +1,14 @@
-let map = L.map('map').setView(new L.LatLng(startLat, startLong), startZoom);
+var map = L.map('map_container').setView(new L.LatLng(startLat, startLong), startZoom);
 
 // make base layer
-let stamenLayer = new L.StamenTileLayer('toner');
+var stamenLayer = new L.StamenTileLayer(stamenType);
 map.addLayer(stamenLayer);
 
 // Uncomment the below if you would like to get the historical overlay working
 
 // the historical overlay
 // requires a tiling service
-// let overlay = new L.TileLayer.WMS("http://server:8080/geoserver/gwc/service/wms", {
+// var overlay = new L.TileLayer.WMS("http://server:8080/geoserver/gwc/service/wms", {
 //           layers: 'states:Nebraska_wma',
 //           format: 'image/png',
 //           transparent: true
@@ -19,10 +19,10 @@ map.addLayer(stamenLayer);
 // L.control.layers({ "Plain" : stamenLayer, "Historical" : overlay }).addTo(map);
 
 
-let makeLinks = function(city, papers) {
+var makeLinks = function(city, papers) {
   if (papers) {
-    let res = "<h4>"+city+"</h4>";
-    for (let paper in papers) {
+    var res = "<h4>"+city+"</h4>";
+    for (var paper in papers) {
       res += singleLink(paper, papers[paper])
     }
     return res;
@@ -31,13 +31,13 @@ let makeLinks = function(city, papers) {
   }
 };
 
-let singleLink = function(name, id) {
+var singleLink = function(name, id) {
   return "<li class='map_paper_link'>"
          +"<a href='../lccn/"
          +id+"/'>"+name+"</a></li>";
 };
 
-let circleMarkers = {
+var circleMarkers = {
   radius: 8,
   fillColor: markerColor,
   color: markerColor,
@@ -47,7 +47,7 @@ let circleMarkers = {
 };
 
 cities.forEach(function(city) {
-  let marker = L.circleMarker(city["latlong"], circleMarkers);
+  var marker = L.circleMarker(city["latlong"], circleMarkers);
   marker.addTo(map);
   marker.bindPopup(makeLinks(city["name"], city["papers"]));
   

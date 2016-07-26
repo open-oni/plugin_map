@@ -8,6 +8,7 @@
 {% block head_page_css %}
   {{ block.super }}
   <link rel="stylesheet" href="{% static 'vendor/leaflet/leaflet.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/map.css' %}"/>
 {% endblock head_page_css %}
 
 {% block subcontent %}
@@ -15,7 +16,7 @@
   <h3>Map</h3>
 
   <!-- provide the map with a div to live inside -->
-  <div id="map" style="width: 100%; height: 50em"></div>
+  <div id="map_container"></div>
 
   <h3>List of Titles by Location</h3>
 
@@ -41,25 +42,26 @@
 
 {% block javascript %}
   {{ block.super }}
-  <!-- leaflet (map library) -->
-  <script type="text/javascript" src="{% static 'vendor/leaflet/leaflet.js' %}"></script>
+  <!-- leafvar (map library) -->
+  <script src="{% static 'vendor/leaflet/leaflet.js' %}"></script>
 
   <!-- include a stamenizer for the map appearance -->
-  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+  <script src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
 
   <!-- data for the cities -->
-  <script type="text/javascript" src="{% static 'js/cities_list.js' %}"></script>
+  <script src="{% static 'js/cities_list.js' %}"></script>
 
   {% block javascript_map_settings %}
     <script>
       // map settings
-      let startLat = 41.5;
-      let startLong = -99.316;
-      let startZoom = 7;
-      let markerColor = "#000000";
+      var stamenType = "toner";
+      var startLat = 41.5;
+      var startLong = -99.316;
+      var startZoom = 7;
+      var markerColor = "#000000";
     </script>
   {% endblock javascript_map_settings %}
   
   <!-- The map JS -->
-  <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+  <script src="{% static 'js/map.js' %}"></script>
 {% endblock javascript %}
