@@ -34,6 +34,19 @@ var cities = [
 ];
 ```
 
+If you have a GeoNames account, or you have manually put latitude and longitude
+into your `core_places` table, you can run the `map_places` admin command to
+generate valid JavaScript:
+
+    # Run this from the open-oni directory
+    docker-compose exec web manage map_places geonames-user OR
+
+You can even automate it further by grepping only the first line of JS:
+
+    # Run this from the open-oni directory
+    docker-compose exec web manage map_places geonames-user OR | \
+      grep -A999999999 "var cities = " >themes/oregon/static/js/cities_list.js
+
 To hitch this plugin to your project wagon, you will need to add a few lines in some files.
 
 `onisite.plugins.map` needs to go in your `INSTALLED_APPS` list:
