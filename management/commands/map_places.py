@@ -46,19 +46,20 @@ class Command(BaseCommand):
 
             # Record the lat/lng in our output data
             if lat is not None and lng is not None:
-                output_data[place] = (lat,lng)
+                output_data[place.city] = (lat,lng)
 
         _logger.info("finished looking up places in GeoNames")
 
         cities_json = []
-        for place in output_data:
-            titles = models.Title.objects.filter(places__city__iexact=place.city).all()
+        for city in output_data:
+            latlng = output_data[city]
+            titles = models.Title.objects.filter(places__city__iexact=city).all()
             if len(titles) == 0:
                 continue
 
             city_json = {
-                "name": place.city,
-                "latlong": [place.latitude, place.longitude],
+                "name": city,
+                "latlong": [latlng[0], latlng[1]],
                 "papers": {}
             }
             for title in titles:

@@ -41,11 +41,14 @@ generate valid JavaScript:
     # Run this from the open-oni directory
     docker-compose exec web manage map_places geonames-user OR
 
-You can even automate it further by grepping only the first line of JS:
+You can even automate it further by grepping only the first line of JS (note that this will hide errors from you!):
 
     # Run this from the open-oni directory
     docker-compose exec web manage map_places geonames-user OR | \
       grep -A999999999 "var cities = " >themes/oregon/static/js/cities_list.js
+
+**NOTE**: When using the map_places command, bear in mind that if you somehow have two
+cities with the same name, one will end up clobbering the other!
 
 To hitch this plugin to your project wagon, you will need to add a few lines in some files.
 
