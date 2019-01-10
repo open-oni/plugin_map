@@ -1,5 +1,6 @@
 /*
-obtained from https://github.com/stamen/maps.stamen.com/tree/3d8673da34f8a74802949686e528fdc6561eb18c
+obtained from most recently changed version
+https://github.com/stamen/maps.stamen.com/blob/3d8673da34f8a74802949686e528fdc6561eb18c/js/tile.stamen.js
 with patch https://github.com/stamen/maps.stamen.com/pull/119
 */
 
