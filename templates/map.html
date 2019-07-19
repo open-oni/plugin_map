@@ -11,6 +11,26 @@
   <link rel="stylesheet" href="{% static 'css/map.css' %}"/>
 {% endblock head_page_css %}
 
+{% block javascript %}
+  {{ block.super }}
+  {# Leaflet and Stamen libraries; City coordinates & links list #}
+  <script src="{% static 'vendor/leaflet/leaflet.js' %}"></script>
+  <script src="{% static 'vendor/stamen/stamen.js' %}"></script>
+  <script src="{% static 'js/cities_list.js' %}"></script>
+  {% block javascript_map_settings %}
+    <script>
+      // map settings
+      var stamenType = "toner";
+      var startLat = 41.5;
+      var startLong = -99.316;
+      var startZoom = 7;
+      var markerColor = "#000000";
+    </script>
+  {% endblock javascript_map_settings %}
+  {# Render map after page load #}
+  <script src="{% static 'js/map.js' %}"></script>
+{% endblock javascript %}
+
 {% block subcontent %}
 
   {% block map %}
@@ -40,30 +60,3 @@
   {% endblock city_list_text %}
 
 {% endblock %}
-
-
-{% block javascript %}
-  {{ block.super }}
-  <!-- leafvar (map library) -->
-  <script src="{% static 'vendor/leaflet/leaflet.js' %}"></script>
-
-  <!-- include a stamenizer for the map appearance -->
-  <script src="{% static 'vendor/stamen/stamen.js' %}"></script>
-
-  <!-- data for the cities -->
-  <script src="{% static 'js/cities_list.js' %}"></script>
-
-  {% block javascript_map_settings %}
-    <script>
-      // map settings
-      var stamenType = "toner";
-      var startLat = 41.5;
-      var startLong = -99.316;
-      var startZoom = 7;
-      var markerColor = "#000000";
-    </script>
-  {% endblock javascript_map_settings %}
-  
-  <!-- The map JS -->
-  <script src="{% static 'js/map.js' %}"></script>
-{% endblock javascript %}
