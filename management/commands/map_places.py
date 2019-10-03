@@ -1,6 +1,6 @@
 import json
 import logging
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 from django.core.management.base import BaseCommand
 from django.db import reset_queries
@@ -84,10 +84,10 @@ def _get_lat_long_from_geonames(place, options):
         "featureClass":"P",
         "country":"US",
     }
-    url = "%s?%s" % (geonames_url, urllib.urlencode(url_query))
+    url = "%s?%s" % (geonames_url, urllib.parse.urlencode(url_query))
     _logger.info("Querying %s" % url)
 
-    h = urllib.urlopen(url)
+    h = urllib.request.urlopen(url)
     data = h.read()
     geodata = json.loads(data)
 
