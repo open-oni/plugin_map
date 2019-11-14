@@ -2,6 +2,19 @@
 
 This provides very basic functionality to browse newspaper title locations on a map.
 
+## Compatibility
+
+The "master" branch should not be considered stable.  Unlike the core Open ONI
+repository, plugins don't warrant the extra overhead of having separate
+development branches, release branches, etc.  Instead, it is best to find a tag
+that works and stick with that tag.
+
+- Map v0.2.0 and prior only work with Python 2 and Django 1.11 and prior
+  - Therefore these versions of the Map plugin are only compatible up to
+    (and including) ONI v0.11.0
+- Map releases beyond v0.2.0 require Python 3 and Django 2.2.  If you need this
+  plugin to work with ONI v0.11.0 or prior, stick with v0.2.0.
+
 ## Setup
 
 Download the repository into the Open ONI's `onisite/plugins` directory as `map`:
