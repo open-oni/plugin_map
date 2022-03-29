@@ -1,6 +1,6 @@
-from django.conf.urls import url, include
+from django.urls import include, path, re_path
 from onisite.plugins.map import views
 
 urlpatterns = [
-  url('', views.map, name="map_home"),
+  path('', views.map, name="map_home"),
 ]

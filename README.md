@@ -86,13 +86,13 @@ And add the plugin's URLs with `url(r'^map/', include("onisite.plugins.map.urls"
 ```python
 # onisite/urls.py
 
-from django.conf.urls import url, include
+from django.urls import include, path, re_path
 
 urlpatterns = [
-  url(r'^map/', include("onisite.plugins.map.urls")),
+  re_path(r'^map/', include("onisite.plugins.map.urls")),
 
   # keep this last or else urls from core may override custom urls
-  url('', include("core.urls")),
+  path('', include("core.urls")),
 ]
 ```
 
