@@ -2,8 +2,12 @@ $(function() {
   var map = L.map('map_container').setView(new L.LatLng(startLat, startLong), startZoom);
 
   // make base layer
-  var stamenLayer = new L.StamenTileLayer(stamenType);
-  map.addLayer(stamenLayer);
+  map.addLayer(L.tileLayer('https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      maxZoom:20,
+      subdomains:'abc',
+      attribution:'\xa9 <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+    }
+  ));
 
   // Uncomment the below if you would like to get the historical overlay working
 
