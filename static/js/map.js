@@ -21,7 +21,7 @@ $(function() {
   // overlay.addTo(map);
   //
   // add a toggle for the two layers
-  // L.control.layers({ "Plain" : stamenLayer, "Historical" : overlay }).addTo(map);
+  // L.control.layers({ "Plain" : plainLayer, "Historical" : overlay }).addTo(map);
 
 
   var makeLinks = function(city, papers) {
